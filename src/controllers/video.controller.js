@@ -68,7 +68,7 @@ const getVideo = asyncHandler(async(req, res)=>{
 
 const updateVideo = asyncHandler(async(req, res)=>{
 
-  const {id} = re.params;
+  const {id} = req.params;
   const {title, description, duration, isPublished} = req.body;
 
   if(!mongoose.Types.ObjectId.isValid(id)){

@@ -22,7 +22,7 @@ router.route("/register").post(
     {
       name: "avatar",
       maxCount: 1
-    },//two file accept kar rha hu , coverimage and avatar
+    },//two file accept kar rha hu , cover image and avatar
     {
       name: "coverImage",
       maxCount: 1,
