@@ -37,7 +37,7 @@ router.put(
 // Route to delete a video by ID
 router.delete("/:id", deleteVideo);
 
-// Route to get all videos (with pagination and search)
+// Route to get al l videos (with pagination and search)
 router.get("/", getAllVideos);
 
 export default router;
