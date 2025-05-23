@@ -63,7 +63,10 @@ const registerUser = asyncHandler(async (req, res) => {
   }
   // console.log(req.files);
   // handling images
-  const avatarLocalPath = req.files?.avatar[0]?.path; //0-> first property
+  let avatarLocalPath;
+  if (req.files && Array.isArray(req.files.avatar) && req.files.avatar.length > 0) {
+    avatarLocalPath = req.files.avatar[0].path;
+  } //0-> first property
   // const coverImageLocalPath = req.files?.coverImage[0]?.path;
   let coverImageLocalPath;
   if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
