@@ -1,16 +1,16 @@
-import express from "express";
+import { Router } from "express";
 import { getChannelStats, getChannelVideos } from "../controllers/dashboard.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router = express.Router();
+const router = Router();
 
-// Protecting routes with JWT authentication
+// Protect dashboard routes
 router.use(verifyJWT);
 
-// Route to get channel stats (total videos, views, likes, subscribers)
-router.get("/:channelId/stats", getChannelStats);
+// Get channel stats (videos, views, subscribers, likes)
+router.route("/:channelId/stats").get(getChannelStats);
 
-// Route to get all videos uploaded by the channel
-router.get("/:channelId/videos", getChannelVideos);
+// Get videos uploaded by a channel (with pagination)
+router.route("/:channelId/videos").get(getChannelVideos);
 
 export default router;

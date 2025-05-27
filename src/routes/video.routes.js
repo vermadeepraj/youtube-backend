@@ -1,43 +1,44 @@
-import { express } from "express";
-import { registerVideo,
-getAllVideos,
-getVideo,
-updateVideo,
-deleteVideo } from "../controllers/video.controller";
-import { verifyJWT } from "../middlewares/auth.middleware";
-import {upload} from "../middlewares/multer.middleware"
+import { Router } from "express";
+import {
+  registerVideo,
+  getAllVideos,
+  getVideo,
+  updateVideo,
+  deleteVideo,
+} from "../controllers/video.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { upload } from "../middlewares/multer.middleware.js";
 
-const router = express.Router()
-//Middleware to verify JWT for protected routes
+const router = Router();
+
+// Protect all routes with JWT middleware
 router.use(verifyJWT);
 
-//ROUTES to register a video
-router.post(
-  "/register",
+// Create/register video with files upload
+router.route("/register").post(
   upload.fields([
-    { name: "videoFile", maxCount: 1 }, // Field for video file
-    { name: "thumbnail", maxCount: 1 }, // Field for thumbnail
+    { name: "videoFile", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
   ]),
   registerVideo
 );
 
-// Route to get a single video by ID
-router.get("/:id", getVideo);
+// Get all videos (pagination & search)
+router.route("/").get(getAllVideos);
 
-// Route to update video details
-router.put(
-  "/:id",
+// Get single video by ID
+router.route("/:id").get(getVideo);
+
+// Update video details and optionally upload new files
+router.route("/:id").put(
   upload.fields([
-    { name: "videoFile", maxCount: 1 }, // Optional field for video file
-    { name: "thumbnail", maxCount: 1 }, // Optional field for thumbnail
+    { name: "videoFile", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
   ]),
   updateVideo
 );
 
-// Route to delete a video by ID
-router.delete("/:id", deleteVideo);
-
-// Route to get al l videos (with pagination and search)
-router.get("/", getAllVideos);
+// Delete video by ID
+router.route("/:id").delete(deleteVideo);
 
 export default router;

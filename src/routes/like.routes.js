@@ -1,22 +1,27 @@
-import { express } from "express";
-import { get } from "mongoose";
+import { Router } from "express";
 import {
   likeContent,
   unlikeContent,
   getLikeForContent,
-  checkIfUserLikedContent
-} from "../controllers/like.controller.js"
-
+  checkIfUserLikedContent,
+} from "../controllers/like.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router = express.router();
+const router = Router();
 
-//secure routes
+// Protect all routes with JWT middleware
 router.use(verifyJWT);
 
-router.post("/like", likeContent);
-router.post("/unlike", unlikeContent)
-router.get("/likes", getLikeForContent)
-router.get("/check-like", checkIfUserLikedContent)
+// Like content
+router.route("/like").post(likeContent);
 
-export default router
+// Unlike content
+router.route("/unlike").post(unlikeContent);
+
+// Get likes for content
+router.route("/likes").get(getLikeForContent);
+
+// Check if user liked content
+router.route("/check-like").get(checkIfUserLikedContent);
+
+export default router;

@@ -1,27 +1,27 @@
-import express from "express";
+import { Router } from "express";
 import {
   getVideoComments,
   addComment,
   updateComment,
-  deleteComment
+  deleteComment,
 } from "../controllers/comment.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
-const router = express.Router();
+const router = Router();
 
-// Protect all comment routes with JWT verification middleware
+// Protect comment routes
 router.use(verifyJWT);
 
-// Route to get all comments for a specific video (paginated)
-router.get("/:videoId", getVideoComments);
+// Get comments for a video (with pagination)
+router.route("/:videoId").get(getVideoComments);
 
-// Route to add a new comment to a video
-router.post("/:videoId", addComment);
+// Add comment to a video
+router.route("/:videoId").post(addComment);
 
-// Route to update a specific comment by ID
-router.put("/:commentId", updateComment);
+// Update comment by ID
+router.route("/:commentId").put(updateComment);
 
-// Route to delete a specific comment by ID
-router.delete("/:commentId", deleteComment);
+// Delete comment by ID
+router.route("/:commentId").delete(deleteComment);
 
 export default router;

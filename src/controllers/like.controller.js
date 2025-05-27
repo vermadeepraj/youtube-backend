@@ -1,7 +1,7 @@
-import { asyncHandler } from "../utils/asyncHandler";
-import {Like, Link} from '../models/like.model.js'
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import {Like} from '../models/like.model.js'
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
 
 //---------LIKE A VIDEO------

@@ -1,10 +1,10 @@
-import { asyncHandler } from "../utils/asyncHandler";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { Video } from '../models/video.model.js'
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 import mongoose, { modelNames, Schema } from "mongoose";
-import { uploadOnCloudinary } from "../utils/cloudinary";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 
 
@@ -26,7 +26,7 @@ const registerVideo = asyncHandler(async (req, res) => {
   const videoFile = await uploadOnCloudinary(videoLocalPath);
   const thumbnail = await uploadOnCloudinary(thumbnailLocalPath);
 
-  if(videoFile.url || !thumbnail.url){
+  if(!videoFile.url || !thumbnail.url){
     throw new ApiError(400, "Error uploading files to Cloudinary")
   }
 
