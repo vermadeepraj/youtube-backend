@@ -6,13 +6,12 @@ This repository contains the backend implementation of a YouTube-like platform. 
 
 ## 📚 Table of Contents
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
+- [🚀 Features](#-features)
+- [🛠 Tech Stack](#-tech-stack)
+- [⚙️ Getting Started](#️-getting-started)
+- [🔐 Environment Variables](#-environment-variables)
+- [🤝 Contributing](#-contributing)
+- [📝 License](#-license)
 
 ---
 
@@ -34,7 +33,6 @@ This repository contains the backend implementation of a YouTube-like platform. 
 - **Database**: MongoDB, Mongoose
 - **Media Storage**: Cloudinary
 - **Authentication**: JWT (Access + Refresh Tokens)
-- **Documentation**: Swagger UI
 
 ---
 
@@ -89,16 +87,6 @@ ACCESS_TOKEN_SECRET=your_jwt_access_token_secret
 ACCESS_TOKEN_EXPIRY=1d
 REFRESH_TOKEN_SECRET=your_jwt_refresh_token_secret
 REFRESH_TOKEN_EXPIRY=7d
-```
-
----
-
-## 📑 API Documentation
-
-Once the server is running, access the Swagger documentation here:
-
-```
-http://localhost:3000/api-docs
 ```
 
 ---
